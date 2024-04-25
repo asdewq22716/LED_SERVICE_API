@@ -1,0 +1,163 @@
+<?php
+include '../include/include.php';
+
+$str_json = file_get_contents("php://input");
+$POST = json_decode($str_json, true);
+$i=0;
+
+$form_field['USERNAME'] 			= 'BankruptDt';// เปลี่ยนเป็นค่าที่จะส่ง
+$form_field['PASSWORD'] 			= 'Debtor4321';// เปลี่ยนเป็นค่าที่จะส่ง
+
+
+$field = array();
+$field['IP_ADDRESS'] = $ip ;
+$field['DEP_ID'] = $POST['depId'];
+$field['REQUEST'] = 'getDossAsset';
+$field['LOG_DATE'] = date("Y-m-d");
+$field['LOG_TIME'] = date("H:i:s");
+$field['USR_ID'] = '' ;
+$field['REQUEST_STATUS'] = '200';
+$field['USR_IDCARD'] = $POST['idCard'];
+$field['LOG_TYPE'] = '1' ;
+$field['REQUEST_DATA'] = $str_json;
+
+$LOG_ID = db::db_insert('M_LOG', $field, 'LOG_ID','LOG_ID');
+
+
+// if($POST["prefixBlackCase"]!=""){
+	// $filter .= " and PREFIX_BLACK_CASE = '".$POST['prefixBlackCase']."'	";
+// }
+// if($POST["blackCase"]!=""){
+	// $filter .= " and BLACK_CASE = '".$POST['blackCase']."'	";
+// }
+// if($POST["blackYy"]!=""){
+	// $filter .= " and BLACK_YY = '".$POST['blackYy']."'	";
+// }
+// if($POST["prefixRedCase"]!=""){
+	// $filter .= " and PREFIX_RED_CASE = '".$POST['prefixRedCase']."'	";
+// }
+// if($POST["redCase"]!=""){
+	// $filter .= " and RED_CASE = '".$POST['redCase']."'	";
+// }
+// if($POST["redYy"]!=""){
+	// $filter .= " and RED_YY = '".$POST['redYy']."'	";
+// }
+// if($POST["CourtCode"]!=""){
+	// $filter .= " and COURT_CODE = '".$POST['CourtCode']."'	";
+// }
+
+if($POST["WhCivilId"]!=""){
+	$filter .= " and WH_CIVIL_CASE_ASSETS.WH_CIVIL_ID = '".$POST['WhCivilId']."'	";
+}
+if($POST["dossId"]!=""){
+	$filter .= " and WH_CIVIL_CASE_ASSETS.DOSS_ID = '".$POST['dossId']."'	";
+}
+if($POST["PccDossControl"]!=""){
+	$filter .= " and WH_CIVIL_CASE_ASSETS.DOSS_CONTROL_GEN = '".$POST['PccDossControl']."'	";
+}
+if($POST["pccDossControl"]!=""){
+	$filter .= " and WH_CIVIL_CASE_ASSETS.DOSS_CONTROL_GEN = '".$POST['pccDossControl']."'	";
+}
+if($POST["assetId"]!=""){
+	$filter .= " and WH_CIVIL_CASE_ASSETS.ASSET_ID = '".$POST['assetId']."'	";
+}
+if($POST["AssetDataType"]!=""){
+	$filter .= " and WH_CIVIL_CASE_ASSETS.ASSET_DATA_TYPE = '".$POST['AssetDataType']."'	";
+}
+$obj = array();
+if($POST["systemType"]=='BankruptDt'){
+	if($POST["prefixBlackCase"]!=""){
+		$filter .= " and PREFIX_BLACK_CASE = '".$POST['prefixBlackCase']."'	";
+	}
+	if($POST["blackCase"]!=""){
+		$filter .= " and BLACK_CASE = '".$POST['blackCase']."'	";
+	}
+	if($POST["blackYy"]!=""){
+		$filter .= " and BLACK_YY = '".$POST['blackYy']."'	";
+	}
+	if($POST["prefixRedCase"]!=""){
+		$filter .= " and PREFIX_RED_CASE = '".$POST['prefixRedCase']."'	";
+	}
+	if($POST["redCase"]!=""){
+		$filter .= " and RED_CASE = '".$POST['redCase']."'	";
+	}
+	if($POST["redYy"]!=""){
+		$filter .= " and RED_YY = '".$POST['redYy']."'	";
+	}
+
+	$sqlSelectData = "	SELECT 	ASSET_ID,CAP_NO,SEQ_NO,PROP_TITLE,TYPE_CODE,TYPE_CODE_NAME,to_char(DATE_SALE,'DD/MM/YYYY') as DATE_SALE,EST_ASSET_PRICE1,SALE_PRICE,PROP_STATUS,PROP_STATUS_NAME
+						FROM 	WH_BANKRUPT_ASSETS
+						WHERE	1=1 {$filter}"; 
+
+
+	$querySelectData = db::query($sqlSelectData);
+	while($dataSelectData = db::fetch_array($querySelectData)){
+		$obj[$i]['capNo'] 			= $dataSelectData['CAP_NO'];
+		$obj[$i]['seqNo'] 			= $dataSelectData['SEQ_NO'];
+		$obj[$i]['assetType'] 		= $dataSelectData['TYPE_CODE'];
+		$obj[$i]['desc'] 			= $dataSelectData['PROP_TITLE'];
+		$obj[$i]['ratePrice'] 		= $dataSelectData['EST_ASSET_PRICE1'];
+		$obj[$i]['salePrice'] 		= $dataSelectData['SALE_PRICE'];
+		$obj[$i]['allowDate'] 		= $dataSelectData['DATE_SALE'];
+		$obj[$i]['status'] 			= $dataSelectData['PROP_STATUS'];
+		$obj[$i]['statusTxt'] 		= $dataSelectData['PROP_STATUS_NAME'];
+		$obj[$i]['assetTypeName'] 	= $dataSelectData['TYPE_CODE_NAME'];
+		$obj[$i]['assetId'] 		= $dataSelectData['ASSET_ID'];
+		$i++;
+	}
+	
+}else{
+
+	if($filter!=""){
+		$sqlSelectData = "	SELECT 	ASSET_ID,CAP_NO,SEQ_NO,PROP_TITLE,TYPE_CODE,TYPE_CODE_NAME,EST_PRICE_AMOUNT,SALE_PRICE,PROP_STATUS,PROP_STATUS_NAME,GERNISSHEE,AMOUNT_TYPE,OUTSIDER,EST_SPECIALIST,EST_MORTGAGE,EST_BANK,EST_VANG_SUB,EST_GROUP_AMOUNT,EST_SUB_AMOUNT,EST_DOL,EST_MORTGAGE,EST_BANK,TO_CHAR(DATE_SALE,'DD/MM/YYYY') as DATE_SALE
+							FROM 	WH_CIVIL_CASE_ASSETS
+							WHERE	1=1 {$filter}"; 
+		$querySelectData = db::query($sqlSelectData);
+		while($dataSelectData = db::fetch_array($querySelectData)){
+			
+			$obj[$i]['capNo'] 			= $dataSelectData['CAP_NO'];
+			$obj[$i]['seqNo'] 			= $dataSelectData['SEQ_NO'];
+			$obj[$i]['assetType'] 		= $dataSelectData['TYPE_CODE_NAME'];
+			$obj[$i]['desc'] 			= $dataSelectData['PROP_TITLE'];
+			
+			$obj[$i]['allowDate'] 		= $dataSelectData['DATE_SALE'];
+			$obj[$i]['status'] 			= $dataSelectData['PROP_STATUS'];
+			$obj[$i]['statusTxt'] 		= $dataSelectData['PROP_STATUS_NAME'];
+			$obj[$i]['assetTypeName'] 	= $dataSelectData['TYPE_CODE_NAME'];
+			$obj[$i]['assetId'] 		= $dataSelectData['ASSET_ID'];
+			$obj[$i]['garnisshee'] 		= $dataSelectData['GERNISSHEE'];
+			$obj[$i]['amountType'] 		= $dataSelectData['AMOUNT_TYPE'];
+			$obj[$i]['outsider'] 		= $dataSelectData['OUTSIDER'];
+			
+			$obj[$i]['ratePrice'] 		= $dataSelectData['EST_PRICE_AMOUNT'];
+			$obj[$i]['salePrice'] 		= $dataSelectData['SALE_PRICE'];
+			$obj[$i]['estVangSub'] 		= $dataSelectData['EST_VANG_SUB'];
+			$obj[$i]['estGroupAmount'] 	= $dataSelectData['EST_GROUP_AMOUNT'];
+			$obj[$i]['estSubAmount'] 	= $dataSelectData['EST_SUB_AMOUNT'];
+			$obj[$i]['estDol'] 			= $dataSelectData['EST_DOL'];
+			$obj[$i]['estSpecialist'] 	= $dataSelectData['EST_SPECIALIST'];
+			$obj[$i]['estMortgage'] 	= $dataSelectData['EST_MORTGAGE'];
+			$obj[$i]['estBank'] 		= $dataSelectData['EST_BANK'];
+			
+			$i++;
+		}
+
+	}
+}
+$num = count($obj);
+
+	if($num > 0){
+
+		$row['ResponseCode'] = array('ResCode'=>'000','ResMeassage'=>"SUCCESS");
+		$row['Data'] = $obj;
+		
+		$data = $row;
+
+	}else{
+		$row['ResponseCode'] = array('ResCode'=>'102','ResMeassage'=>"NOT FOUND");
+		$data = $row;
+	}
+
+echo json_encode($data);
+
+ ?>

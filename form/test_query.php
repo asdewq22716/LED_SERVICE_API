@@ -1,0 +1,73 @@
+<?php
+include '../include/include.php';
+
+$sql = "SELECT
+			CC.CIVIL_CODE,
+			CC.COURT_CODE,
+			CC.COURT_NAME,
+			CC.DEPT_CODE,
+			CC.DEPT_NAME,
+			CC.PREFIX_BLACK_CASE,
+			CC.BLACK_CASE,
+			CC.BLACK_YY,
+			CC.PREFIX_RED_CASE,
+			CC.RED_CASE,
+			CC.RED_YY,
+			CAL.ASSET_CODE,
+			CAL.ASSET_ID,
+			CAL.ASSET_DOC_TYPE,
+			CAL.ASSET_STATUS,
+			CAL.BOOK_NO,
+			CAL.PAGE_NO,
+			CAL.FREIGHT,
+			CAL.LAND_NO,
+			CAL.SURVEY_PAGE,
+			CAL.TUM_CODE,
+			CAL.TUM_NAME,
+			CAL.AMP_CODE,
+			CAL.AMP_NAME,
+			CAL.PROV_CODE,
+			CAL.PROV_NAME,
+			CAL.ZIP_CODE,
+			CAL.OLD_TUM_NAME,
+			CAL.OLD_AMP_NAME,
+			CAL.OLD_PROV_NAME,
+			CAL.AREA_RAI,
+			CAL.AREA_NGAN,
+			CAL.AREA_WA,
+			CAL.AREA_FRACTION_WA,
+			CAL.LAND_PRICE_PER_WA,
+			CAL.LAND_PRICE,
+			CAL.DETAIL,
+			CAL.RECORD_COUNT,
+			CAL.SEQ,
+			CAL.HOLDING_GROUP,
+			CAL.HOLDING_TYPE,
+			CAL.HOLDING_AMOUNT
+		FROM
+			WH_CIVIL_CASE CC
+		LEFT JOIN WH_CIVIL_MAP_CASE_ASSET CA ON CC.CIVIL_CODE = CA.CIVIL_CODE
+		LEFT JOIN WH_CIVIL_CASE_ASSETS_LAND CAL ON CAL.ASSET_CODE = CA.ASSET_CODE";
+
+	$query = db::query($sql);
+	while($asset = db::fetch_array($query)){
+		$sql_person = " SELECT  
+							CP.PERSON_CODE,
+							CP.REGISTER_CODE,
+							CP.PREFIX_CODE,
+							CP.PREFIX_NAME,
+							CP.FIRST_NAME,
+							CP.LAST_NAME,
+							CP.CONCERN_CODE,
+							CP.CONCERN_NAME,
+							CP.CONCERN_NO 
+						FROM WH_CIVIL_ASSET_OWNER AO
+						LEFT JOIN WH_CIVIL_CASE_PERSON CP ON CP.PERSON_CODE = AO.PERSON_CODE
+						WHERE AO.ASSET_CODE = '".$asset['ASSET_CODE']."'";
+		$query_person = db::query($sql_person);
+		while($person = db::fetch_array($query_person)){
+
+
+		}			
+	}
+?>

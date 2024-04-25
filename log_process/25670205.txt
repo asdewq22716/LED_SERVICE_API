@@ -1,0 +1,2 @@
+[11:40:34 ::1]  () :insert into TEST_DATA_RES (PAGE_CODE, COLUMN1, CREATE_DATE, SYSTEM_TYPE, PK_ID) values ('DPD1I030', '&pageCode=DPD1I030&systemCode=1&pccCivilGen=1353664735&toPersonId=1489900129401', '2024-02-05', '1', '22349')
+[11:47:36 ::1]  () :insert into TEST_DATA_RES (PAGE_CODE, COLUMN1, CREATE_DATE, SYSTEM_TYPE, PK_ID) values ('DPD1I030', '&pageCode=DPD1I030&systemCode=1&pccCivilGen=1353664735&toPersonId=1489900129401', '2024-02-05', '1', '22352')

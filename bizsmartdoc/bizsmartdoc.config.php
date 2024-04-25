@@ -1,0 +1,1 @@
+<?php /*$config = array('base_url'=>'http://domain/workflow_present/','max_ocr_length'=>8001);*/ $config = array('base_url'=>'http://103.208.27.224/workflow_present/','max_ocr_length'=>8001); ?>
