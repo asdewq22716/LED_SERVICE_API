@@ -1,1 +1,0 @@
-[15:32:35 ::1]  () :insert into TEST_DATA_RES (PAGE_CODE, COLUMN1, CREATE_DATE, SYSTEM_TYPE, PK_ID) values ('AUD3I010', '&pageCode=AUD3I010&subPageCode=&systemCode=1&pccCivilGen=1353665978&toPersonId=1489900129401', '2024-03-05', '1', '26003')

@@ -1,12 +1,15 @@
-#function/config_db.php
-#attach/
-#wysiwyg/
-#wysiwyg_p/
-#logs_error/
-#log_process/
-#web.config
-#gitPullHook.php
-#api/public/web.config
-#function/config_db.php.bak
-#service/temp_request/
-#service/temp_response/
+#/.env
+
+/.vscode
+/config/*
+
+# ยกเว้น (keep track) /config/initdb
+!/config/initdb/
+!/config/initdb/**
+
+# ละเว้นอย่างอื่นตามปกติ
+/data/*
+/logs/*
+#/www/**
+.DS_Store
+/buildtest

@@ -1,6 +1,0 @@
-[11:04:13 ::1]  () :insert into TEST_DATA_RES (PAGE_CODE, COLUMN1, CREATE_DATE, SYSTEM_TYPE, PK_ID) values ('Led_serviceQuery', '&page=DPD1I030&action=approveAccount&params=Array', '2024-03-19', '1', '27386')
-[11:04:43 ::1]  () :insert into TEST_DATA_RES (PAGE_CODE, COLUMN1, CREATE_DATE, SYSTEM_TYPE, PK_ID) values ('Led_serviceQuery', '&page=DPD1I030&action=approveAccount&params=Array', '2024-03-19', '1', '27387')
-[11:05:12 ::1]  () :insert into TEST_DATA_RES (PAGE_CODE, COLUMN1, CREATE_DATE, SYSTEM_TYPE, PK_ID) values ('Led_serviceQuery', '&page=DPD1I030&action=approveAccount&params=Array', '2024-03-19', '1', '27388')
-[11:05:32 ::1]  () :insert into TEST_DATA_RES (PAGE_CODE, COLUMN1, CREATE_DATE, SYSTEM_TYPE, PK_ID) values ('Led_serviceQuery', '&page=DPD1I030&action=approveAccount&params=Array', '2024-03-19', '1', '27389')
-[11:07:47 ::1]  () :insert into TEST_DATA_RES (PAGE_CODE, COLUMN1, CREATE_DATE, SYSTEM_TYPE, PK_ID) values ('Led_serviceQuery', '&page=DPD1I030&action=approveAccount&params=Array', '2024-03-19', '1', '27390')
-[13:53:13 ::1]  () :insert into TEST_DATA_RES (PAGE_CODE, COLUMN1, CREATE_DATE, SYSTEM_TYPE, PK_ID) values ('DPD1I030', '&pageCode=DPD1I030&systemCode=1&dpdCivilTrnGen=3170655&toPersonId=1489900129401', '2024-03-19', '1', '27459')

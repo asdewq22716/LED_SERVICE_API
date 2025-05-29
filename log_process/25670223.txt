@@ -1,8 +1,0 @@
-[09:22:53 ::1]  () :insert into WH_BANKRUPT_CASE_DETAIL (BANKRUPT_CODE, COURT_CODE, COURT_NAME, DEPT_CODE, DEPT_NAME, PREFIX_BLACK_CASE, BLACK_CASE, BLACK_YY, PREFIX_RED_CASE, RED_CASE, RED_YY, COURT_DATE, CAPITAL_AMOUNT, DOSS_OWNER_ID, DOSS_OWNER_NAME, PLAINTIFF1, PLAINTIFF2, PLAINTIFF3, DEFFENDANT1, DEFFENDANT2, DEFFENDANT3, WH_BANKRUPT_ID) values ('', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '179')
-[09:22:53 ::1]  () :delete from WH_COURT_LOG where 1=1 and COURT_SYSTEM_TYPE = '2' and BLACK_CASE = '' and BLACK_YY = '' and RED_CASE = '' and RED_YY = ''
-[09:22:53 ::1]  () :delete from WH_BANKRUPT_CASE_PERSON where 1=1 and WH_BANKRUPT_ID = '179'
-[09:22:53 ::1]  () :update WH_COURT_LOG set COURT_REGISTER_CODE = '' where 1=1 and COURT_SYSTEM_TYPE = '2' and BLACK_CASE = '' and BLACK_YY = '' and RED_CASE = '' and RED_YY = ''
-[09:22:53 ::1]  () :delete from WH_BANKRUPT_DOCKET where 1=1 and WH_BANKRUPT_ID = '179'
-[09:22:53 ::1]  () :delete from WH_BANKRUPT_BALANCE_PERSON where 1=1 and WH_BANKRUPT_ID = '179'
-[09:22:53 ::1]  () :delete from WH_BANKRUPT_DOC where 1=1 and BANKRUPT_CODE = ''
-[09:22:54 ::1]  () :insert into TEST_DATA_RES (PAGE_CODE, COLUMN1, CREATE_DATE, SYSTEM_TYPE, PK_ID) values ('BR010102', '&pageCode=BR010102&systemCode=2&brcID=27498&toPersonId=1489900129401', '2024-02-23', '2', '25444')

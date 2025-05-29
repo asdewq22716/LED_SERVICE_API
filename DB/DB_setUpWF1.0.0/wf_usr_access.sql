@@ -1,0 +1,53 @@
+-- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+--
+-- Host: localhost    Database: wf
+-- ------------------------------------------------------
+-- Server version	8.3.0
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `usr_access`
+--
+
+DROP TABLE IF EXISTS `usr_access`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `usr_access` (
+  `ACCESS_ID` int DEFAULT NULL,
+  `ACCESS_TYPE` varchar(255) DEFAULT NULL,
+  `ACCESS_REF_ID` int DEFAULT NULL,
+  `USR_TYPE` varchar(255) DEFAULT NULL,
+  `USR_REF_ID` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usr_access`
+--
+
+LOCK TABLES `usr_access` WRITE;
+/*!40000 ALTER TABLE `usr_access` DISABLE KEYS */;
+INSERT INTO `usr_access` VALUES (1,'WFM',1,'G',1),(2,'WFM',4,'G',1),(3,'WFM',5,'G',1),(4,'WFM',9,'G',1),(5,'WFM',11,'G',1),(6,'WFM',14,'G',1),(8,'WFM',11,'G',2),(9,'WFM',1,'G',2),(10,'WFM',4,'G',2),(11,'WFM',5,'G',2),(12,'WFM',8,'G',2),(13,'WFM',14,'G',2),(14,'WFM',9,'G',2),(15,'WFM',8,'G',1),(16,'WFM',12,'G',1),(17,'WFM',12,'G',2);
+/*!40000 ALTER TABLE `usr_access` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2025-05-28 13:16:36
