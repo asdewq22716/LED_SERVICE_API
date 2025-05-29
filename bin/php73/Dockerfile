@@ -2,7 +2,7 @@ FROM php:7.3-apache-stretch
 
 # Surpresses debconf complaints of trying to install apt packages interactively
 # https://github.com/moby/moby/issues/4032#issuecomment-192327844
- 
+
 ARG DEBIAN_FRONTEND=noninteractive
 
 # Remove the old sources.list file.
@@ -59,6 +59,26 @@ RUN apt-get -y update && \
     docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ && \
     docker-php-ext-install -j$(nproc) gd
 
+
+# ดาวน์โหลด Oracle Instant Client
+RUN mkdir -p /opt/oracle \
+    && cd /opt/oracle \
+    && wget https://download.oracle.com/otn_software/linux/instantclient/instantclient-basiclite-linux.x64-21.13.0.0.0dbru.zip \
+    && wget https://download.oracle.com/otn_software/linux/instantclient/instantclient-sdk-linux.x64-21.13.0.0.0dbru.zip \
+    && unzip instantclient-basiclite-linux.x64-21.13.0.0.0dbru.zip \
+    && unzip instantclient-sdk-linux.x64-21.13.0.0.0dbru.zip \
+    && rm *.zip
+
+# ตั้งค่า env
+ENV LD_LIBRARY_PATH=/opt/oracle/instantclient_21_13
+ENV ORACLE_HOME=/opt/oracle/instantclient_21_13
+
+# ติดตั้ง oci8
+RUN docker-php-ext-configure oci8 --with-oci8=instantclient,/opt/oracle/instantclient_21_13 \
+    && docker-php-ext-install oci8
+
+# เปิด module
+RUN echo "extension=oci8.so" > /usr/local/etc/php/conf.d/20-oci8.ini
 # Insure an SSL directory exists
 RUN mkdir -p /etc/apache2/ssl
 
